@@ -1,16 +1,27 @@
-import { FlatList, Text, StyleSheet, View, Image, Dimensions } from "react-native";
+import { FlatList, Text, StyleSheet, View, Image, Dimensions, TouchableOpacity, Pressable } from "react-native";
 import { millisToMinutesAndSeconds } from "../utils"
+import Icon from "react-native-vector-icons/AntDesign";
+import { NavigationContainer } from '@react-navigation/native';
 
 const windowWidth = Dimensions.get("window").width;
 
-export default function Song( {songArtists, albumName, songTitle, imageUrl, duration, index} ) {
+export default function Song( {songArtists, albumName, songTitle, imageUrl, duration, index, navigation, previewUrl, externalUrl} ) {
+    let preview = null;
+    if (previewUrl==undefined) {
+        preview = navigation.navigate("PreviewScreen", {url: externalUrl});
+    } else {
+        preview = navigation.navigate("PreviewScreen", {url: previewUrl});
+    }
+
     return (
         <View style={styles.song}>
-            <Text style={{color: "white", width: 0.1 * windowWidth, margin: 8}}>{index}</Text>
+            <Icon style={{fontSize: "25%"}} name = "play" color = "green" onPress={() => {preview}}/>
             <Image style={styles.image} source={{uri: imageUrl}}/>
             <View style={styles.view}>
-                <Text style={{color: "white", fontWeight: "bold", fontSize: 12}} numberOfLines={1}>{songTitle}</Text>
-                <Text style={{color: "white"}}>{songArtists}</Text>
+                <Pressable onPress={() => {preview}}>
+                    <Text style={{color: "white", fontWeight: "bold", fontSize: 12}} numberOfLines={1}>{songTitle}</Text>
+                    <Text style={{color: "white"}}>{songArtists}</Text>
+                </Pressable>
             </View>
             <Text style={{color: "white", width: 0.225 * windowWidth}} numberOfLines={1} >{albumName}</Text>
             <Text style={{color: "white", width: 0.1 * windowWidth}}>{millisToMinutesAndSeconds(duration)}</Text>
