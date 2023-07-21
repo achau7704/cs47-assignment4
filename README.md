@@ -6,3 +6,5 @@ Starting the app
 2. `yarn install`
 3. `npx expo start`
 # cs47-assignment4
+
+# This is a mock Spotify app that I built for a class at Stanford.
