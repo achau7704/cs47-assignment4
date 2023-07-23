@@ -1,10 +1,2 @@
 # cs47-a3-starter-w23
-a3 starter code
-
-Starting the app
-1. git clone https://github.com/acui51/cs47-a3-starter-w23.git
-2. `yarn install`
-3. `npx expo start`
-# cs47-assignment4
-
-# This is a mock Spotify app that I built for a class at Stanford.
+This builds upon cs47-assignment3 by giving the user the option to click on the song cover (takes user to preview screen on the web) or click on the play button to play the song.
